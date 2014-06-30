@@ -7,14 +7,22 @@ html, body {
 	margin-left: auto;
 	width: 70%;
 }
-#content #publish ul {
+#content div ul {
 	list-style-type: none;
 }
-#content #publish ul li {
+#content div ul li {
 	display: inline-block;
 	padding: 5px 7px;
-	background-color: #2396FF;
 	border-radius: 4px;
 	color: #ffffff;
 	cursor: pointer;
+}
+#content #publish ul li {
+	background-color: #2396FF;
+}
+#content #subscribe ul li:first-child {
+	background-color: #2C9448;
+}
+#content #subscribe ul li:last-child {
+	background-color: #FF5540;
 }
