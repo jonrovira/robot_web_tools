@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	var ros = connectToROS();
+	var subscribers = {};
 
 	// Connects to ROS using rosbridge server
 	function connectToROS() {
@@ -18,18 +19,17 @@ $(document).ready(function() {
 		});
 		return ros;
 	}
-	function makeTopic(pkg, type) {
+	function makeTopic(name, type) {
 		var topic = new ROSLIB.Topic({
 			ros : ros,
-			name : '/web_'+type,
-			messageType : pkg+'/'+type
+			name : name,
+			messageType : type
 		});
 		return topic;
 	}
-	function makeMessage(pkg, type) {
-		var m = pkg+'/'+type;
+	function makeMessage(type) {
 		var message;
-		switch(m) {
+		switch(type) {
 			case 'std_msgs/String':
 				message = new ROSLIB.Message({
 					data : "Hello, world!"
@@ -51,17 +51,48 @@ $(document).ready(function() {
 		}
 		return message;
 	}
-	function publishMessage(pkg, type) {
-		topic = makeTopic(pkg, type);
-		message = makeMessage(pkg, type);
+	function publishMessage(name, type) {
+		var topic = makeTopic(name, type);
+		var message = makeMessage(type);
 		topic.publish(message);
+		return undefined;
+	}
+	function subscribeToMessage(index, name, type) {
+		if(!subscribers[index]) {
+			var listener = makeTopic(name, type);
+			subscribers[index] = listener;;
+			listener.subscribe(function(message) {
+				console.log('Received message on '+ listener.name + ': ' + message.data);
+			});
+		}
+		else {
+			console.log('Already subscribing to topic');
+		}
+		return undefined;
+	}
+	function unsubscribe(index) {
+		subscribers[index].unsubscribe();
+		delete subscribers[index];
+		return undefined;
 	}
 
 
 	// Publish button click
 	$('#publish ul li').click(function() {
-		var pkg = $(this).attr('class'); 
-		var type = $(this).attr('id');
-		publishMessage(pkg, type);
+		var name = '/web/' + type;
+		var a = $(this).attr('class');
+		var b = $(this).attr('id');
+		var type = a + '/' + b;
+		publishMessage(name, type);
 	});
+	$('#subscribe ul li:first-child').click(function() {
+		var index = $(this).parent().attr('id');
+		var name = '/cameras/left_hand_camera/image';
+		var type = 'std_msgs/String';
+		subscribeToMessage(index, name, type);
+	});
+	$('#subscribe ul li:last-child').click(function() {
+		var index = $(this).parent().attr('id');
+		unsubscribe(index);
+	})
 });
