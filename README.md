@@ -1,6 +1,6 @@
 <h1>Robot_Web_Tools</h1>
 <h5>Author: Jon Rovira</h5>
-<br><br>
+<br>
 
 <h5>Purpose</h5>
 <p>
@@ -8,6 +8,7 @@
 </p>
 
 <h5>Done</h5>
-<p>
-	Clickable buttons in a browser that publish topics to ROS
-</p>
+<ul>
+	<li>Clickable buttons in a browser that publish topics to ROS</li>
+	<li>Stream in browser to Baxter's left hand camera</li>
+</ul>

@@ -84,9 +84,24 @@ $(document).ready(function() {
 		return undefined;
 	}
 	// Unsubscribe from a topic
-	function unsubscribe(index) {
-		subscribers[index].unsubscribe();
-		delete subscribers[index];
+	function unsubscribeFromTopic(index) {
+		if(subscribers[index]) {
+			subscribers[index].unsubscribe();
+			delete subscribers[index];
+		}
+		else {
+			console.log('Already unsubscribed');
+		}
+		return undefined;
+	}
+	function initializeStreamCanvas() {
+		var viewer = new MJPEGCANVAS.Viewer({
+			divID : 'mjpeg',
+			host : 'localhost',
+			width: 640,
+			height : 480,
+			topic : '/cameras/left_hand_camera/image'
+		});
 		return undefined;
 	}
 
@@ -105,14 +120,20 @@ $(document).ready(function() {
 	});
 	// Start subscribing to left hand camera button clicked
 	$('#subscribe ul li:first-child').click(function() {
-		var index = $(this).parent().attr('id');
-		var name = '/cameras/left_hand_camera/image';
-		var type = 'std_msgs/String';
-		subscribeToTopic(index, name, type);
+		if(!$('#subscribe #mjpeg canvas').length) {
+			initializeStreamCanvas();
+		}
+		else {
+			console.log("Stream has already started");
+		}
 	});
 	// Stop subscribing to left hand camera button clicked
 	$('#subscribe ul li:last-child').click(function() {
-		var index = $(this).parent().attr('id');
-		unsubscribe(index);
+		if($('#subscribe #mjpeg canvas').length) {
+			$('#subscribe #mjpeg canvas').remove();
+		}
+		else {
+			console.log("Stream has already stopped.");
+		}
 	})
 });

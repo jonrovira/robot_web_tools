@@ -8,14 +8,18 @@
 		<script src="packages/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="packages/roslibjs/include/EventEmitter2/eventemitter2.js"></script>
 		<script type="text/javascript" src="packages/roslibjs/roslib.js"></script>
+		<script type="text/javascript" src="packages/roslibjs/mjpegcanvas.min.js"></script>
 		<script src="js/script.js"></script>
 	</head>
 
 	<body>
 		<div id="wrapper">
+			<div id="navbar">
+				<div id="nav-inner">
+					<h1>Robot Web Tools</h1>
+				</div>
+			</div>
 			<div id="content">
-				<h1>Using roslib</h1>
-
 				<div id="publish">
 					<h3>Publish a message:</h3>
 					<ul>
@@ -23,15 +27,17 @@
 						<li class="std_msgs" id="Time">std_msgs/Time</li>
 						<li class="std_msgs" id="Bool">std_msgs/Bool</li>
 					</ul>
-					<hr>
 				</div>
 
 				<div id="subscribe">
+					<div id="mjpeg">
+					</div>
 					<h3>Subscribe to one of Baxter's cameras</h3>
 					<ul id="camera">
 						<li>Start stream</li>
 						<li>Stop stream</li>
 					</ul>
+				</div>
 			</div>
 		</div>
 	</body>

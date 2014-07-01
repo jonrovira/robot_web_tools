@@ -4,6 +4,7 @@ import roslib
 import rospy
 
 import baxter_interface
+from baxter_interface import CHECK_VERSION
 
 class Camera_Handler(object):
 
@@ -13,9 +14,6 @@ class Camera_Handler(object):
 		self._right_camera = baxter_interface.CameraController('right_hand_camera')
 		self._head_camera = baxter_interface.CameraController('head_camera')
 
-		# Start camera
-		self.start_camera()
-
 	def start_camera(self):
 		# Close all three cameras
 		self._left_camera.close()
@@ -24,27 +22,37 @@ class Camera_Handler(object):
 
 		# Open one camera
 		self._left_camera.open()
+		#self._left_camera.resolution = [1280, 800]
 		self._left_camera.resolution = [1280, 800]
 
-	def close_camera(self):
+		while not rospy.is_shutdown():
+			rospy.spin()
+		rospy.signal_shutdown("Done")
+
+	def clean_shutdown(self):
 		# Close the open camera
 		self._left_camera.close()
 
 def main():
 	# Initialize ROS node
-	rospy.init_node('camera_starter')
+	print "Initializing node..."
+	rospy.init_node	("camera_starter")
 
-	# Open camera
+	# verify robot is enabled
+	print("Getting robot state... ")
+	rs = baxter_interface.RobotEnable(CHECK_VERSION)
+	init_state = rs.state().enabled
+	print("Enabling robot... ")
+	rs.enable()
+	print("Running. Ctrl-c to quit")
+
+	# Start
 	camera_handler = Camera_Handler()
+	rospy.on_shutdown(camera_handler.clean_shutdown)
+	print("Starting camera...")
+	camera_handler.start_camera()
+	print("\nDone")
 	
-	# Spin
-	# To quit, press a button on the keyboard
-	try:
-		rospy.spin()
-	except KeyboardInterrupt:
-		print "Closing camera..."
-		# Close open camera
-		camera_handler.close_camera()
 
 
 if __name__ == '__main__':

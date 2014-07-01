@@ -1,11 +1,34 @@
+html {
+	background-color: #111;
+}
 html, body {
 	font-family: Helvetica;
-	color: #333;
+	color: #ffffff;
 }
+body {
+	margin: 0;
+}
+
+
+
+#navbar {
+	margin: 0 0 30px 0;
+	width: 100%;
+	border-bottom: 1px solid #aaa;
+}
+#navbar #nav-inner {
+	margin: 0 auto 0 auto;
+	padding: 10px 0;
+	width: 90%;
+}
+#navbar #nav-inner h1 {
+	margin: 0;
+}
+
+
 #content {
-	margin-right: auto;
-	margin-left: auto;
-	width: 70%;
+	margin: 0 auto 0 auto;
+	width: 90%;
 }
 #content div ul {
 	list-style-type: none;
@@ -17,12 +40,28 @@ html, body {
 	color: #ffffff;
 	cursor: pointer;
 }
+
+
+#content #publish {
+	float: left;
+}
 #content #publish ul li {
 	background-color: #2396FF;
 }
+
+
+#content #subscribe {
+	float: right;
+	text-align: right;
+} 
 #content #subscribe ul li:first-child {
 	background-color: #2C9448;
 }
 #content #subscribe ul li:last-child {
 	background-color: #FF5540;
+}
+#content #subscribe #mjpeg {
+	width: 640px;
+	height: 480px;
+	background-color: #222;
 }
