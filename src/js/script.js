@@ -1,16 +1,12 @@
 $(document).ready(function() {
 
-	/*
-	 * Globals
-	 */
+	/* Globals */
 
 	var ros = connectToROS();
 	var subscribers = {};
 
 
-	/*
-	 * Functions
-	 */
+	/* Functions */
 
 	// Connects to ROS using rosbridge server
 	function connectToROS() {
@@ -59,6 +55,12 @@ $(document).ready(function() {
 					data : true
 				});
 				break;
+			case 'baxter_core_msgs/JointCommand':
+				message = new ROSLIB.Message({
+					mode : 1,
+					command : [0.0, -0.55, 0.0, 0.75, 0.0, 1.26, 0.0],
+					names : ['left_s0', 'left_s1', 'left_e0', 'left_e1', 'left_w0', 'left_w1', 'left_w2']
+				});
 		}
 		return message;
 	}
@@ -106,20 +108,26 @@ $(document).ready(function() {
 	}
 
 
-	/*
-	 * Events
-	 */
+	/* Events */
 
 	// Publish a message button clicked
-	$('#publish ul li').click(function() {
-		var name = '/web/' + type;
+	$('#publish ul:nth-child(2) li').click(function() {
 		var a = $(this).attr('class');
 		var b = $(this).attr('id');
 		var type = a + '/' + b;
+		var name = '/web/' + type;
 		publishMessage(name, type);
 	});
+	$('#publish ul:nth-child(4) li').click(function() {
+		var ns = '/robot/limb/left/';
+		var nsType = 'joint_command';
+		var name = ns + nsType;
+		var type = 'baxter_core_msgs/JointCommand';
+		publishMessage(name, type);
+		console.log("HI");
+	})
 	// Start subscribing to left hand camera button clicked
-	$('#subscribe ul li:first-child').click(function() {
+	$('#stream ul li:first-child').click(function() {
 		if(!$('#subscribe #mjpeg canvas').length) {
 			initializeStreamCanvas();
 		}
@@ -128,9 +136,9 @@ $(document).ready(function() {
 		}
 	});
 	// Stop subscribing to left hand camera button clicked
-	$('#subscribe ul li:last-child').click(function() {
-		if($('#subscribe #mjpeg canvas').length) {
-			$('#subscribe #mjpeg canvas').remove();
+	$('#stream ul li:last-child').click(function() {
+		if($('#stream #mjpeg canvas').length) {
+			$('#stream #mjpeg canvas').remove();
 		}
 		else {
 			console.log("Stream has already stopped.");

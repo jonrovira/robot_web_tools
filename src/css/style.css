@@ -8,24 +8,6 @@ html, body {
 body {
 	margin: 0;
 }
-
-
-
-#navbar {
-	margin: 0 0 30px 0;
-	width: 100%;
-	border-bottom: 1px solid #aaa;
-}
-#navbar #nav-inner {
-	margin: 0 auto 0 auto;
-	padding: 10px 0;
-	width: 90%;
-}
-#navbar #nav-inner h1 {
-	margin: 0;
-}
-
-
 #content {
 	margin: 0 auto 0 auto;
 	width: 90%;
@@ -42,6 +24,26 @@ body {
 }
 
 
+
+#navbar {
+	margin: 0 0 50px 0;
+	width: 100%;
+}
+#navbar #nav-inner {
+	margin: 0 auto 0 auto;
+	padding: 10px 0;
+	width: 90%;
+}
+#navbar #nav-inner h1 {
+	margin: 0;
+}
+#navbar #nav-inner + hr {
+	margin: 0;
+	border-color: #333;
+}
+
+
+
 #content #publish {
 	float: left;
 }
@@ -50,18 +52,45 @@ body {
 }
 
 
-#content #subscribe {
+#content #stream {
 	float: right;
 	text-align: right;
 } 
-#content #subscribe ul li:first-child {
+#content #stream ul li:first-child {
 	background-color: #2C9448;
 }
-#content #subscribe ul li:last-child {
+#content #stream ul li:last-child {
 	background-color: #FF5540;
 }
-#content #subscribe #mjpeg {
+#content #stream ul li i {
+	padding: 5px 8px;
+	font-size: 30px;
+}
+#content #stream #mjpeg {
 	width: 640px;
 	height: 480px;
 	background-color: #222;
+}
+#content #stream + hr {
+	clear: both;
+	border-color: #333;
+}
+
+
+
+#content #instructions {
+	float: left;
+	clear: both;
+	margin: 50px 0 0 0;
+}
+#content #instructions ol li p {
+	font-size: 13px;
+}
+#content #instructions ol li p:nth-child(2) {
+	padding: 9px 10px;
+	background-color: #888;
+	border: 1px solid #89ACFF;
+	border-radius: 4px;
+	font-family: Courier;
+	color: #222;
 }
