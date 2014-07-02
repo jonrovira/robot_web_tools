@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<title>Robot Web Tools</title>
+		<link rel="icon" type="image/png" href="public/images/northwestern_logo.png">
 
 		<link rel="stylesheet" type="text/css" href="packages/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -15,70 +17,98 @@
 
 	<body>
 		<div id="wrapper">
+
 			<div id="navbar">
 				<div id="nav-inner">
-					<h1>Robot Web Tools</h1>
-				</div>
-				<hr>
-			</div>
-			<div id="content">
-				<div id="publish">
-					<h3>Publish a message:</h3>
-					<ul>
-						<li class="std_msgs" id="String">std_msgs/String</li>
-						<li class="std_msgs" id="Time">std_msgs/Time</li>
-						<li class="std_msgs" id="Bool">std_msgs/Bool</li>
-					</ul>
-					<h3>Move Baxter's arm</h3>
-					<ul>
-						<li>Move to neutral</li>
-					</ul>
-				</div>
-				<div id="stream">
-					<div id="mjpeg">
+					<div id="nav-left">
+						<h1>Robot Web Tools</h1>
+						<h3>Example usage with the Baxter robot</h3>
 					</div>
-					<h3>Stream one of Baxter's camera feeds</h3>
-					<ul id="camera">
-						<li><i class="fa fa-play"></i></li>
-						<li><i class="fa fa-stop"></i></li>
-					</ul>
+					<div id="nav-right">
+						<a href="https://github.com/jonrovira/robot_web_tools">
+							<span>Fork the project</span>
+							<i class="fa fa-github"></i>
+						</a>
+					</div>
 				</div>
+			</div>
+
+			<div id="content">
+
+				<div id="intro">
+					<div id="instructions">
+						<h1>Get everything up and running</h1>
+						<ol>
+							<li>
+								<p>Make sure "Enable Networking" is unchecked in the networking menu</p>
+							</li>
+							<li>
+								<p>Ensure that Baxter ethernet cable is connected to PC</p>
+							</li>
+							<li>
+								<p>Open up a terminal and run Avahi's network address configuration daemon</p>
+								<p>$ sudo avahi-autoipd eth0</p>
+							</li>
+							<li>
+								<p>In a new terminal, start roscore</p>
+								<p>$ roscore</p>
+							</li>
+							<li>
+								<p>In a new terminal, launch a rosbridge server</p>
+								<p>$ roslaunch rosbridge_server rosbridge_websocket.launch</p>
+							</li>
+							<li>
+								<p>In a new terminal, launch a mjpeg server</p>
+								<p>$ rosrun mjpeg_server mjpeg_server</p>
+							</li>
+							<li>
+								<p>In Google Chrome, navigate to the local html page</p>
+								<p>file:///home/puppeteer/jons_stuff/catkin_ws/src/robot_web_tools/src/index.html</p>
+							</li>
+							<li>
+								<p>To see Baxter's left hand camera stream, run the startcamera script in a new terminal</p>
+								<p>$ rosrun robot_web_tools startcamera.py</p>
+							</li>
+						</ol>
+					</div>
+					<div id="requirements">
+						<h3>Required to run entire demo</h3>
+						<ul>
+							<li><a href="#">ros-hydro-ros-base (basic ROS installation)</a></li>
+							<li><a href="#">ros-hydro-rosbridge-server (rosbridge_server)</a></li>
+							<li><a href="#">mjpeg_server</a></li>
+							<li><a href="#">Rethink Robotics Baxter robot</a></li>
+						</ul>
+					</div>
+				</div>
+
 				<hr>
-				<div id="instructions">
-					<h3>Get everything up and running</h3>
-					<ol>
-						<li>
-							<p>Make sure "Enable Networking" is unchecked in the networking menu</p>
-						</li>
-						<li>
-							<p>Ensure that Baxter ethernet cable is connected to PC</p>
-						</li>
-						<li>
-							<p>Open up a terminal and run Avahi's network address configuration daemon</p>
-							<p>$ sudo avahi-autoipd eth0</p>
-						</li>
-						<li>
-							<p>In a new terminal, start roscore</p>
-							<p>$ roscore</p>
-						</li>
-						<li>
-							<p>In a new terminal, launch a rosbridge server</p>
-							<p>$ roslaunch rosbridge_server rosbridge_websocket.launch</p>
-						</li>
-						<li>
-							<p>In a new terminal, launch a mjpeg server</p>
-							<p>$ rosrun mjpeg_server mjpeg_server</p>
-						</li>
-						<li>
-							<p>In Google Chrome, navigate to the local html page</p>
-							<p>file:///home/puppeteer/jons_stuff/catkin_ws/src/robot_web_tools/src/index.html</p>
-						</li>
-						<li>
-							<p>To see Baxter's left hand camera stream, run the startcamera script in a new terminal</p>
-							<p>$ rosrun robot_web_tools startcamera.py</p>
-						</li>
-					</ol>
+
+				<div id="demo">
+					<div id="publish">
+						<h3>Publish a message:</h3>
+						<ul>
+							<li class="std_msgs" id="String">std_msgs/String</li>
+							<li class="std_msgs" id="Time">std_msgs/Time</li>
+							<li class="std_msgs" id="Bool">std_msgs/Bool</li>
+						</ul>
+						<h3>Move Baxter's arm</h3>
+						<ul>
+							<li>Move to neutral</li>
+						</ul>
+					</div>
+
+					<div id="stream">
+						<h3>Stream one of Baxter's camera feeds</h3>
+						<div id="mjpeg">
+						</div>
+						<ul id="camera">
+							<li><i class="fa fa-play"></i></li>
+							<li><i class="fa fa-stop"></i></li>
+						</ul>
+					</div>
 				</div>
+
 			</div>
 		</div>
 	</body>
