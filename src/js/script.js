@@ -124,7 +124,6 @@ $(document).ready(function() {
 		var name = ns + nsType;
 		var type = 'baxter_core_msgs/JointCommand';
 		publishMessage(name, type);
-		console.log("HI");
 	})
 	// Start subscribing to left hand camera button clicked
 	$('#stream ul li:first-child').click(function() {
