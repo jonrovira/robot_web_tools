@@ -34,37 +34,34 @@
 <ol>
 <li>Make sure "Enable Networking" is unchecked in the networking menu</li>
 <li>Ensure that Baxter ethernet cable is connected to PC</li>
-<li>Open up a terminal and run Avahi's network address configuration daemon
-<code>
-$ sudo avahi-autoipd eth0
-</code>
-</li>
-<li>In a new terminal, start roscore
-<code>
-$ roscore
-</code>
-</li>
-<li>In a new terminal, launch a rosbridge server
-<code>
-$ roslaunch rosbridge_server rosbridge_websocket.launch
-</code>
-</li>
-<li>In a new terminal, launch a mjpeg server
-<code>
-$ rosrun mjpegserver mjpeg_server
-</code>
-</li>
-<li>In Google Chrome, navigate to the local html page
-<code>
-$ file:///home/puppeteer/jons_stuff/catkin_ws/src/robot_web_tools/src/index.html
-</code>
-</li>
-<li>To see Baxter's left hand camera stream, run the startcamera script in a new terminal
-<code>
-$ rosrun robot_web_tools startcamera.py
-</code>
-</li>
-</ol>
+<li>Open up a terminal and run Avahi's network address configuration daemon</li>
+</ol><pre><code>$ sudo avahi-autoipd eth0
+</code></pre>
+
+<ol>
+<li>In a new terminal, start roscore</li>
+</ol><pre><code>$ roscore
+</code></pre>
+
+<ol>
+<li>In a new terminal, launch a rosbridge server</li>
+</ol><pre><code>$ roslaunch rosbridge_server rosbridge_websocket.launch
+</code></pre>
+
+<ol>
+<li>In a new terminal, launch a mjpeg server</li>
+</ol><pre><code>$ rosrun mjpegserver mjpeg_server
+</code></pre>
+
+<ol>
+<li>In Google Chrome, navigate to the local html page</li>
+</ol><pre><code>$ file:///home/puppeteer/jons_stuff/catkin_ws/src/robot_web_tools/src/index.html
+</code></pre>
+
+<ol>
+<li>To see Baxter's left hand camera stream, run the startcamera script in a new terminal</li>
+</ol><pre><code>$ rosrun robot_web_tools startcamera.py
+</code></pre>
         </section>
 
         <aside id="sidebar">
