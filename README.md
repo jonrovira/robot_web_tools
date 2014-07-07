@@ -6,9 +6,9 @@
 	$ sudo avahi-autoipd eth0
 	```
 4. In a new terminal, start roscore
-	```
-	$ roscore
-	```
+```
+$ roscore
+```
 5. In a new terminal, launch a rosbridge server
 	```
 	$ roslaunch rosbridge_server rosbridge_websocket.launch
